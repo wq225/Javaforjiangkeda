@@ -37,7 +37,6 @@ public class JDBCUtils {
      * @throws Exception
      */
     public static Connection getConnection() throws Exception {
-
         return ds.getConnection();
     }
 
