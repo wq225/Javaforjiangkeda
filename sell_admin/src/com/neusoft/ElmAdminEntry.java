@@ -1,0 +1,68 @@
+package com.neusoft;
+
+import com.neusoft.dao.BusinessDao;
+import com.neusoft.dao.impl.BusinessDaoImpl;
+import com.neusoft.domain.Admin;
+import com.neusoft.domain.Business;
+import com.neusoft.view.AdminView;
+import com.neusoft.view.impl.AdminViewImpl;
+
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ * 饿了么管理入口程序
+ * */
+public class ElmAdminEntry {
+    public static void main(String[] args) {
+        run();
+    }
+    public static void run(){
+        Scanner input =new Scanner(System.in);
+        System.out.println("---------------------------");
+        System.out.println("------饿了么后台管理系统-------");
+        System.out.println("---------------------------");
+
+        AdminView adminView=new AdminViewImpl();
+        BusinessDao businessDao=new BusinessDaoImpl();
+        Admin admin =adminView.login();
+        int menu=0;
+        if(admin!=null){
+            System.out.println("登陆成功！");
+            while(menu!=5){
+                System.out.println("1.查看所有商家");
+                System.out.println("2.搜索指定商家");
+                System.out.println("3.新建商家");
+                System.out.println("4.删除商家");
+                System.out.println("5.退出系统");
+                System.out.println("请输入你要选择的序号：");
+                menu=input.nextInt();
+                switch(menu){
+                    case 1:
+                        List<Business> businesses=businessDao.listBusiness();
+                        for(Business b:businesses){
+                            System.out.println(b);
+                        }
+                        break;
+                    case 2:
+                        System.out.println("搜索指定商家");
+                        break;
+                    case 3:
+                        System.out.println("搜索商家");
+                        break;
+                    case 4:
+                        System.out.println("删除商家");
+                        break;
+                    case 5:
+                        System.out.println("欢迎下次登录");
+                        break;
+                    default:
+                        System.out.println("没有这个选项");
+                        break;
+                }
+            }
+        }else{
+            System.out.println("登陆失败，用户名或密码错误。");
+        }
+    }
+}

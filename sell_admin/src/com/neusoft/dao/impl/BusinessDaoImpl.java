@@ -26,7 +26,15 @@ public class BusinessDaoImpl  implements BusinessDao {
             while (rs.next()){
                 Business business = new Business();
                 String businessName = rs.getString(3);
+                String businessAddress = rs.getString(4);
+                String businessExplain = rs.getString(5);
+                Double starPrice = rs.getDouble(6);
+                Double deliveryPrice = rs.getDouble(7);
                 business.setBusinessName(businessName);
+                business.setBusinessAddress(businessAddress);
+                business.setBusinessExplain(businessExplain);
+                business.setStarPrice(starPrice);
+                business.setDeliveryPrice(deliveryPrice);
                 list.add(business);
             }
         } catch (Exception e) {
@@ -91,6 +99,7 @@ public class BusinessDaoImpl  implements BusinessDao {
         return result;
     }
 
+    //更新表
     @Override
     public int updateBusiness(Business business) {
         int result=0;
