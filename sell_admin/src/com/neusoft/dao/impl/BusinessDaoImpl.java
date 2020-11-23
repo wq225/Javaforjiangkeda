@@ -16,25 +16,28 @@ public class BusinessDaoImpl  implements BusinessDao {
     PreparedStatement pst = null;
     ResultSet rs = null;
     @Override
-    public List<Business> listBusiness() {
+    public List<Business> listBusiness(String businessName, String businessAddress) {
         ArrayList<Business> list = new ArrayList<>();
-        String sql = "select * from business";
+        StringBuffer sql = new StringBuffer("select * from business WHERE 1=1");
+        if (businessName !=null && !businessName.equals("")){
+            sql.append(" and  businessName LIKE '%"+businessName+"%'");
+        }
+        if (businessAddress !=null && !businessAddress.equals("") ){
+            sql.append(" and businessAddress like '%"+businessAddress+"%'");
+        }
         try {
             conn = JDBCUtils.getConnection();
-            pst = conn.prepareStatement(sql);
+            pst = conn.prepareStatement(sql.toString());
             rs = pst.executeQuery();
             while (rs.next()){
                 Business business = new Business();
-                String businessName = rs.getString(3);
-                String businessAddress = rs.getString(4);
-                String businessExplain = rs.getString(5);
-                Double starPrice = rs.getDouble(6);
-                Double deliveryPrice = rs.getDouble(7);
-                business.setBusinessName(businessName);
-                business.setBusinessAddress(businessAddress);
-                business.setBusinessExplain(businessExplain);
-                business.setStarPrice(starPrice);
-                business.setDeliveryPrice(deliveryPrice);
+                business.setBusinessId(rs.getInt("businessId"));
+                business.setPassword(rs.getString("password"));
+                business.setBusinessName(rs.getString("businessName"));
+                business.setBusinessAddress(rs.getString("businessAddress"));
+                business.setBusinessExplain(rs.getString("businessExplain"));
+                business.setStarPrice(rs.getDouble("starPrice"));
+                business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
                 list.add(business);
             }
         } catch (Exception e) {
@@ -42,6 +45,7 @@ public class BusinessDaoImpl  implements BusinessDao {
         }
         return list;
     }
+
 
     @Override
     public int saveBusiness(String businessName) {

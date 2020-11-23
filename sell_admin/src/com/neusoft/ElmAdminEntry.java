@@ -5,7 +5,9 @@ import com.neusoft.dao.impl.BusinessDaoImpl;
 import com.neusoft.domain.Admin;
 import com.neusoft.domain.Business;
 import com.neusoft.view.AdminView;
+import com.neusoft.view.BusinessView;
 import com.neusoft.view.impl.AdminViewImpl;
+import com.neusoft.view.impl.BusinessViewImpl;
 
 import java.util.List;
 import java.util.Scanner;
@@ -24,7 +26,7 @@ public class ElmAdminEntry {
         System.out.println("---------------------------");
 
         AdminView adminView=new AdminViewImpl();
-        BusinessDao businessDao=new BusinessDaoImpl();
+        BusinessView businessView=new BusinessViewImpl();
         Admin admin =adminView.login();
         int menu=0;
         if(admin!=null){
@@ -39,12 +41,10 @@ public class ElmAdminEntry {
                 menu=input.nextInt();
                 switch(menu){
                     case 1:
-                        List<Business> businesses=businessDao.listBusiness();
-                        for(Business b:businesses){
-                            System.out.println(b);
-                        }
+                        businessView.listAllBusinesses();
                         break;
                     case 2:
+                        businessView.selectBusinesses();
                         System.out.println("搜索指定商家");
                         break;
                     case 3:
