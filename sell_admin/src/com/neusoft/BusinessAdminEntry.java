@@ -17,9 +17,9 @@ public class BusinessAdminEntry {
     }
     public static void run() {
         Scanner input = new Scanner(System.in);
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        System.out.println("$$$$$饿了么商家自主管理系统$$$$$");
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.println("***************************");
+        System.out.println("*****饿了么商家自主管理系统*****");
+        System.out.println("***************************");
 
         //商家登录
         BusinessView businessView = new BusinessViewImpl();
