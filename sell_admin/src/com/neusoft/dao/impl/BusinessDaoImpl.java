@@ -1,6 +1,7 @@
 package com.neusoft.dao.impl;
 
 import com.neusoft.dao.BusinessDao;
+import com.neusoft.domain.Admin;
 import com.neusoft.domain.Business;
 import com.neusoft.utils.JDBCUtils;
 
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusinessDaoImpl  implements BusinessDao {
+public class BusinessDaoImpl implements BusinessDao {
     Connection conn = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
@@ -20,7 +21,7 @@ public class BusinessDaoImpl  implements BusinessDao {
         ArrayList<Business> list = new ArrayList<>();
         StringBuffer sql = new StringBuffer("select * from business WHERE 1=1");
         if (businessName !=null && !businessName.equals("")){
-            sql.append(" and  businessName LIKE '%"+businessName+"%'");
+            sql.append(" and businessName LIKE '%"+businessName+"%'");
         }
         if (businessAddress !=null && !businessAddress.equals("") ){
             sql.append(" and businessAddress like '%"+businessAddress+"%'");
@@ -135,11 +136,41 @@ public class BusinessDaoImpl  implements BusinessDao {
             rs=pst.executeQuery();
             while(rs.next()){
                 business=new Business();
+                business.setBusinessId(rs.getInt("businessId"));
+                business.setPassword(rs.getString("password"));
                 business.setBusinessName(rs.getString("businessName"));
                 business.setBusinessAddress(rs.getString("businessAddress"));
                 business.setBusinessExplain(rs.getString("businessExplain"));
-                business.setStarPrice(rs.getDouble("StarPrice"));
-                business.setDeliveryPrice(rs.getDouble("DeliveryPrice"));
+                business.setStarPrice(rs.getDouble("starPrice"));
+                business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.close(rs,pst,conn);
+        }
+        return business;
+    }
+
+    @Override
+    public Business getBusinessByIdAndPassword(Integer bussinessId, String password) {
+        Business business=null;
+        String sql="select * from business where businessId=? and password=?";
+        try {
+            conn = JDBCUtils.getConnection();
+            pst =conn.prepareStatement(sql);
+            pst.setInt(1,bussinessId);
+            pst.setString(2,password);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                business = new Business();
+                business.setBusinessId(rs.getInt("businessId"));
+                business.setPassword(rs.getString("password"));
+                business.setBusinessName(rs.getString("businessName"));
+                business.setBusinessAddress(rs.getString("businessAddress"));
+                business.setBusinessExplain(rs.getString("businessExplain"));
+                business.setStarPrice(rs.getDouble("starPrice"));
+                business.setDeliveryPrice(rs.getDouble("deliveryPrice"));
             }
         } catch (Exception e) {
             e.printStackTrace();
