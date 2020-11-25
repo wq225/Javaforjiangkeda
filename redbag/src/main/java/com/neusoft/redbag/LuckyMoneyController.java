@@ -17,7 +17,7 @@ public class LuckyMoneyController {
      * 获取红包列表
      * @return
      */
-    //@GetMapping("/list")
+    @GetMapping("/list")
     @RequestMapping("/list")
     public List<LuckyMoney> list(){
        return repository.findAll();
@@ -44,13 +44,13 @@ public class LuckyMoneyController {
      */
     @GetMapping("/find/{id}")
     public LuckyMoney findById(@PathVariable("id")Integer id){
-//        Optional<LuckyMoney> optional = repository.findById(id);
+ //       Optional<LuckyMoney> optional = repository.findById(id);
 //        if (optional.isPresent()){
 //            LuckyMoney luckyMoney = optional.get();
 //            return luckyMoney;
 //        }
-//        return null;
-        // 如果有就返回，没有就 返回 other
+        //return null;
+         //如果有就返回，没有就 返回 other
         return repository.findById(id).orElse(null);
     }
 
