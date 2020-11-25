@@ -17,9 +17,10 @@ public class LuckyMoneyController {
      * 获取红包列表
      * @return
      */
-    @GetMapping("/list")
+    //@GetMapping("/list")
+    @RequestMapping("/list")
     public List<LuckyMoney> list(){
-        return repository.findAll();
+       return repository.findAll();
     }
 
     /**
