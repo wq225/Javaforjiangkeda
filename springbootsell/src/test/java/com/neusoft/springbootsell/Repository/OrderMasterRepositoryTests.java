@@ -33,4 +33,9 @@ public class OrderMasterRepositoryTests {
         //System.out.println(master);
         Assert.assertNotNull(result);
     }
+
+    @Test
+    public void updateTest(){
+
+    }
 }
