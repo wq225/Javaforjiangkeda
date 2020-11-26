@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.swing.*;
 import java.math.BigDecimal;
 
 @RunWith(SpringRunner.class)
@@ -23,12 +22,12 @@ public class OrderMasterRepositoryTests {
     @Test
     public void saveTest(){
         OrderMaster orderMaster=new OrderMaster();
-        orderMaster.setOrderId("1234567");
-        orderMaster.setUserName("王琪");
-        orderMaster.setBuyerPhone("18862622817");
-        orderMaster.setBuyerAddress("江科大西门");
+        orderMaster.setOrderId("07");
+        orderMaster.setUserName("要被删除的人");
+        orderMaster.setBuyerPhone("13364712");
+        orderMaster.setBuyerAddress("某小区");
         orderMaster.setBuyerOpenId(OPENID);
-        orderMaster.setOrderAmount(new BigDecimal(9.9));
+        orderMaster.setOrderAmount(new BigDecimal(19.0));
 
         OrderMaster result=repository.save(orderMaster);
         //System.out.println(master);
