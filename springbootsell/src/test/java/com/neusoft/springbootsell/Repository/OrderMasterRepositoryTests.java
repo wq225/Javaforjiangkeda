@@ -23,10 +23,10 @@ public class OrderMasterRepositoryTests {
     public void saveTest(){
         OrderMaster orderMaster=new OrderMaster();
         orderMaster.setOrderId("07");
-        orderMaster.setUserName("要被删除的人");
+        orderMaster.setBuyerName("要被删除的人");
         orderMaster.setBuyerPhone("13364712");
         orderMaster.setBuyerAddress("某小区");
-        orderMaster.setBuyerOpenId(OPENID);
+        orderMaster.setBuyerOpenid(OPENID);
         orderMaster.setOrderAmount(new BigDecimal(19.0));
 
         OrderMaster result=repository.save(orderMaster);
@@ -34,8 +34,4 @@ public class OrderMasterRepositoryTests {
         Assert.assertNotNull(result);
     }
 
-    @Test
-    public void updateTest(){
-
-    }
 }

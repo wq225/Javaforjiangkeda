@@ -20,7 +20,7 @@ public class OrderMaster {
     private String orderId;
 
     //买家名字
-    private String userName;
+    private String buyerName;
 
     //买家的手机号
     private String buyerPhone;
@@ -29,7 +29,7 @@ public class OrderMaster {
     private String buyerAddress;
 
     //买家的微信openId
-    private  String buyerOpenId;
+    private  String buyerOpenid;
 
     //订单的总金额
     private BigDecimal orderAmount;
