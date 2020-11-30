@@ -1,6 +1,5 @@
 package com.neusoft.springbootsell.controller;
 
-
 import com.neusoft.springbootsell.dataobject.ProductInfo;
 import com.neusoft.springbootsell.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +13,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
-//卖家商品控制
+/**
+ * 卖家商品控制
+ */
 @Controller
 @RequestMapping("/seller/product")
-public class SellProductController {
+public class SellerProductController {
     @Autowired
     ProductService productService;
     @GetMapping("/list")
-    public ModelAndView list(@RequestParam(value = "page",defaultValue = "1") Integer page,
-                             @RequestParam(value = "size",defaultValue = "10")Integer size,
-                             Map<String,Object> map){
-        PageRequest pageRequest= new PageRequest(page-1,size);
-        Page<ProductInfo> productInfoPage= productService.findAll(pageRequest);
-        map.put("profuctInfoPage",productInfoPage);
-        map.put("currentPage",page);
+    public ModelAndView list(@RequestParam(value = "page", defaultValue = "1") Integer page,
+                             @RequestParam(value = "size", defaultValue = "5")Integer size,
+                             Map<String, Object> map){
+
+        PageRequest pageRequest = new PageRequest(page - 1, size);
+        Page<ProductInfo> productInfoPage = productService.findAll(pageRequest);
+        map.put("productInfoPage", productInfoPage);
+        map.put("currrentPage",page);
         map.put("size",size);
-        return new ModelAndView("product/list",map);
+        return new  ModelAndView("product/list", map);
     }
+
 }
