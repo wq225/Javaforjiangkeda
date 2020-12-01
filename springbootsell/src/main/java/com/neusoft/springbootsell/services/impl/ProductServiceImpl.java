@@ -44,31 +44,35 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductInfo onSale(String productId) {
-        //查一下
-        ProductInfo productInfo =repository.findOne(productId);
-        //判断
-        if(productInfo==null){
+        // 查一下
+        ProductInfo productInfo = repository.findOne(productId);
+        // 判断
+        if (productInfo == null){
             throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
         }
-        if(productInfo.getProductStatus()==ProductStatusEnum.UP.getCode()){
+        if (productInfo.getProductStatus() == ProductStatusEnum.UP.getCode()){
             throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
         }
+        // 更改值
         productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
+
         return repository.save(productInfo);
     }
 
     @Override
     public ProductInfo offSale(String productId) {
-        //查一下
-        ProductInfo productInfo =repository.findOne(productId);
-        //判断
-        if(productInfo==null){
+        // 查一下
+        ProductInfo productInfo = repository.findOne(productId);
+        // 判断
+        if (productInfo == null){
             throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
         }
-        if(productInfo.getProductStatus()==ProductStatusEnum.DOWN.getCode()){
+        if (productInfo.getProductStatus() == ProductStatusEnum.DOWN.getCode()){
             throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
         }
+        // 更改值
         productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
+
         return repository.save(productInfo);
     }
 
