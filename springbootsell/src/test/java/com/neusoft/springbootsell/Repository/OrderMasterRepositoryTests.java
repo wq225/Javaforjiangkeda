@@ -36,14 +36,13 @@ public class OrderMasterRepositoryTests {
         Assert.assertNotNull(result);
     }
 
-//    //根据买家微信openid查询买家端信息
-//    @Test
-//    void findByBuyerOpenid() {
-//        PageRequest request=PageRequest.of(0,1);
-//        Page<OrderMaster> result
-//                = repository.findByBuyerOpenid(OPENID, request);
-//        Assert.assertNotEquals(0,result.getTotalElements());
-//        //System.out.println(result.getTotalElements());
-//    }
+    //根据买家微信openid查询买家端信息
+    public void findByBuyerOpenid() {
+        PageRequest request=new PageRequest(0,1);
+        Page<OrderMaster> result=repository.findByBuyerOpenid(OPENID,request);
+        Assert.assertNotEquals(0,result.getTotalElements());
+        System.out.println(result.getTotalElements());
+
+    }
 
 }

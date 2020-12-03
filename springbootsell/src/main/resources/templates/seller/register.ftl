@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>饿了么用户登录</title>
+    <title>饿了么用户注册</title>
 </head>
 <style>
     body{
@@ -83,26 +83,20 @@
 </style>
 <body>
 <div class="box">
-    <h2>饿了么系统用户登录</h2>
+    <h2>饿了么系统用户注册</h2>
 
-    <form action="/seller/login" method="post">
+    <form action="/seller/register" method="post">
         <div class="inputBox">
-            <input type="text" name="username" required="" >
+            <input type="text" required="" >
             <label>用户名</label>
         </div>
         <div class="inputBox">
-            <input type="password" name="password" required="">
+            <input type="password" required="">
             <label>密码</label>
         </div>
 
 
-        <input type="submit" name="" value="登录">
-
-
-
-        <button>
-            <a href="register.ftl" target="_blank" style="text-decoration: none">注册</a>
-        </button>
+        <input type="submit" name="" value="注册">
 
     </form>
 </div>

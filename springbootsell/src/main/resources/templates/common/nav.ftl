@@ -26,7 +26,7 @@
         </li>
 
         <li>
-            <a href="/sell/seller/logout"><i class="fa fa-fw fa-list-alt"></i>退出</a>
+            <a href="/seller/loginPage"><i class="fa fa-fw fa-list-alt"></i>退出</a>
         </li>
 
     </ul>

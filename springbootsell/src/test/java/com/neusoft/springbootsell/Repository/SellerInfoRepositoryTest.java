@@ -29,8 +29,10 @@ public class SellerInfoRepositoryTest {
     }
 
     @Test
-    public void findByOpenid() throws Exception{
-        SellerInfo result=repository.findByOpenid("abc");
-        Assert.assertEquals("abc",result.getOpenid());
+    public void findByUsernameAndPassword() throws Exception{
+        SellerInfo result=repository.findByUsernameAndPassword("王老板","123");
+        Assert.assertEquals("王老板",result.getUsername());
+        Assert.assertEquals("123",result.getPassword());
     }
+
 }

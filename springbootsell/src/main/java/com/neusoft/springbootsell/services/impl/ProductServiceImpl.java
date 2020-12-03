@@ -1,6 +1,7 @@
 package com.neusoft.springbootsell.services.impl;
 
 import com.neusoft.springbootsell.dataobject.ProductInfo;
+
 import com.neusoft.springbootsell.enums.ProductStatusEnum;
 import com.neusoft.springbootsell.enums.ResultEnum;
 import com.neusoft.springbootsell.exception.SellException;
@@ -21,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductInfo findOne(String productId) {
+
         return repository.findOne(productId);
     }
 
@@ -39,6 +41,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductInfo save(ProductInfo productInfo) {
+
         return repository.save(productInfo);
     }
 
@@ -83,6 +86,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void decreaseStock(String productId) {
+
 
     }
 }

@@ -1,6 +1,7 @@
 package com.neusoft.springbootsell.services;
 
 import com.neusoft.springbootsell.dataobject.ProductInfo;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
