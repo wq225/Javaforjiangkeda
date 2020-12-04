@@ -100,9 +100,9 @@
 
 
 
-        <button>
-            <a href="register.ftl" target="_blank" style="text-decoration: none">注册</a>
-        </button>
+<#--        <button>-->
+<#--            <a href="register.ftl" target="_blank" style="text-decoration: none">注册</a>-->
+<#--        </button>-->
 
     </form>
 </div>
