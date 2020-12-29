@@ -12,7 +12,6 @@ import java.util.Optional;
 public class LuckyMoneyController {
     @Autowired
     private LuckyMoneyRepository repository;
-
     /**
      * 获取红包列表
      * @return
@@ -44,16 +43,8 @@ public class LuckyMoneyController {
      */
     @GetMapping("/find/{id}")
     public LuckyMoney findById(@PathVariable("id")Integer id){
- //       Optional<LuckyMoney> optional = repository.findById(id);
-//        if (optional.isPresent()){
-//            LuckyMoney luckyMoney = optional.get();
-//            return luckyMoney;
-//        }
-        //return null;
-         //如果有就返回，没有就 返回 other
         return repository.findById(id).orElse(null);
     }
-
     /**
      * 收红包
      * @param id
@@ -71,6 +62,4 @@ public class LuckyMoneyController {
         }
         return null;
     }
-
-
 }

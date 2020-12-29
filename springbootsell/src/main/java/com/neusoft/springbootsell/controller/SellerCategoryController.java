@@ -50,7 +50,6 @@ public class SellerCategoryController {
         }
         return new ModelAndView("category/index",map);
     }
-
     //保存商品类目
     @PostMapping("/save")
     public ModelAndView save(@Valid CategoryForm form,
@@ -61,7 +60,6 @@ public class SellerCategoryController {
             map.put("url", "/seller/category/index");
             return new ModelAndView("common/error", map);
         }
-
         ProductCategory productCategory = new ProductCategory();
         try {
             if(form.getCategoryId()!=null){

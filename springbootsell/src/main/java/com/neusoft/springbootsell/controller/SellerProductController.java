@@ -63,9 +63,7 @@ public class SellerProductController {
         return new ModelAndView("product/index");
     }
     @PostMapping("/save")
-    public ModelAndView save(@Valid ProductForm form,
-                             BindingResult bindingResult,
-                             Map<String, Object> map
+    public ModelAndView save(@Valid ProductForm form, BindingResult bindingResult, Map<String, Object> map
     ){
         if (bindingResult.hasErrors()){
             // 返回错误页面
@@ -73,21 +71,15 @@ public class SellerProductController {
             map.put("url", "/seller/product/index");
             return new ModelAndView("common/error", map);
         }
-
         ProductInfo productInfo = new ProductInfo();
         try {
-            //        productInfo.setProductName(form.getProductName());
             if (!StringUtils.isEmpty(form.getProductId())){
-                // 有ProductId  修改
-                productInfo = productService.findOne(form.getProductId());
+                productInfo = productService.findOne(form.getProductId()); // 有ProductId  修改
             }else {
-                // 新增  生成一个id
-                form.setProductId(KeyUtil.genUniqueKey());
+                form.setProductId(KeyUtil.genUniqueKey());// 新增  生成一个id
             }
-
             BeanUtils.copyProperties(form, productInfo);
             productService.save(productInfo);
-
         }catch (SellException exception){
             map.put("msg", exception.getMessage());
             map.put("url", "/seller/product/index");
@@ -95,9 +87,7 @@ public class SellerProductController {
         }
         map.put("url", "/seller/product/list");
         return new ModelAndView("common/success", map);
-
     }
-
     //商品上架
     @GetMapping("/on_sale")
     public ModelAndView onSale(@RequestParam("productId") String productId, Map<String, Object> map) {
@@ -111,7 +101,6 @@ public class SellerProductController {
         map.put("url", "/seller/product/list");
         return new ModelAndView("common/success", map);
     }
-
     //商品下架
     @GetMapping("/off_sale")
     public ModelAndView offSale(@RequestParam("productId") String productId, Map<String, Object> map) {
